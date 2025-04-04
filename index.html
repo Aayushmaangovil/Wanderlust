@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanderlust Dreams</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+    }
+    .chat-box {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen overflow-hidden bg-gradient-to-br from-indigo-300 via-purple-200 to-pink-100">
+
+  <!-- Video Background -->
+  <video autoplay muted loop class="absolute top-0 left-0 w-full h-full object-cover z-0">
+    <source src="4342600-hd_1920_1080_25fps (1).mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay -->
+  <div class="overlay absolute top-0 left-0 w-full h-full z-10"></div>
+
+  <!-- Navbar -->
+  <nav class="relative z-20 w-full flex justify-between items-center p-6 text-white">
+    <h1 class="text-3xl font-bold">Wanderlust Dreams</h1>
+    <div>
+      <a href="#profile" class="mr-4 hover:underline">Profile</a>
+      <a href="#explore" class="mr-4 hover:underline">Explore</a>
+      <a href="#gallery" class="mr-4 hover:underline">Gallery</a>
+      <a href="#map" class="mr-4 hover:underline">Map</a>
+      <a href="#bookings" class="mr-4 hover:underline">Bookings</a>
+      <a href="#about" class="hover:underline">About</a>
+    </div>
+  </nav>
+
+  <!-- Google Maps Integration -->
+  <section id="map" class="relative z-20 mt-12 text-center">
+    <h2 class="text-3xl font-bold text-white drop-shadow-lg mb-6">Explore the World</h2>
+    <div class="w-full h-96">
+      <iframe 
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        style="border:0;" 
+        allowfullscreen 
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Eiffel+Tower,Paris+France">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="bookings" class="relative z-20 mt-12 text-center bg-white bg-opacity-90 p-6 rounded-xl shadow-xl w-full max-w-3xl mx-auto text-gray-800">
+    <h2 class="text-2xl font-semibold mb-4">Book Flights & Hotels</h2>
+    <p class="mb-4">Find the best travel deals for your next adventure!</p>
+    <div class="mb-4">
+      <label class="block mb-2 font-semibold">Destination</label>
+      <input type="text" id="destination" placeholder="Enter a destination..." class="w-full p-2 rounded-md border border-gray-300" />
+    </div>
+    <div class="mb-4">
+      <label class="block mb-2 font-semibold">Check-in Date</label>
+      <input type="date" id="checkin" class="w-full p-2 rounded-md border border-gray-300" />
+    </div>
+    <div class="mb-4">
+      <label class="block mb-2 font-semibold">Check-out Date</label>
+      <input type="date" id="checkout" class="w-full p-2 rounded-md border border-gray-300" />
+    </div>
+    <button onclick="searchBookings()" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition">Search</button>
+  </section>
+
+  <script>
+    function searchBookings() {
+      const destination = document.getElementById("destination").value;
+      const checkin = document.getElementById("checkin").value;
+      const checkout = document.getElementById("checkout").value;
+      
+      if (!destination || !checkin || !checkout) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      
+      const skyscannerUrl = `https://www.skyscanner.com/transport/flights-to/${destination}`;
+      const bookingUrl = `https://www.booking.com/searchresults.html?ss=${destination}&checkin=${checkin}&checkout=${checkout}`;
+      
+      window.open(skyscannerUrl, "_blank");
+      window.open(bookingUrl, "_blank");
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="relative z-20 w-full text-center text-white mt-12 p-4 text-sm opacity-80">
+    © 2025 Wanderlust Dreams — Designed for dreamers
+  </footer>
+</body>
+</html>
